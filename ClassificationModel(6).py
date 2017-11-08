@@ -107,8 +107,8 @@ _L7 = tf.nn.relu(h7)
 L7 = tf.nn.dropout(_L7,dropout_rate)
 
 # L8 FC 256 Inputs -> 16 Outputs
-W8 = tf.get_variable("W8", shape=[256, y_out], initializer=xavier_init(256,14))
-b4 = tf.Variable(tf.random_normal([14]))
+W8 = tf.get_variable("W8", shape=[256, y_out], initializer=xavier_init(256,y_out))
+b4 = tf.Variable(tf.random_normal([y_out]))
 h8 = tf.matmul(L7,W8) + b4
 
 
@@ -319,43 +319,13 @@ while(True):
                             num = "[/]"
 
                         elif int(num) == 14:
-                            num = '[A]"
+                            num = "[A]"
 
                         elif int(num) == 15:
                             num = "[~]"
                                                    
                         numbers += str(num) + " "
-                        if ifp == 0 and ifm == 0 and ifm2 == 0 and ifd == 0:
-                            if str(num) == "[+]":
-                                ifp += 1 
 
-                            elif str(num) == "[-]":
-                                ifm += 1
-
-                            elif str(num) == "[*]":
-                                ifm2 += 1 
-
-                            elif str(num) == "[/]":
-                                ifd += 1 
-
-                            else:
-                                a *= 10
-                                a += int(num)
-                        else:
-                            if str(num) != "[+]" and str(num) != "[-]" and str(num) != "[*]" and str(num) != "[/]":
-                                b *= 10
-                                b += int(num) 
-                    if n == labelnum-1 and ifp == 1:
-                        print("Equation: %d + %d = " % (int(a),int(b)) + str(a+b))
-                           
-                    if n == labelnum-1 and ifm == 1:
-                        print("Equation: %d - %d = " % (int(a),int(b)) + str(a-b))    
-
-                    if n == labelnum-1 and ifm2 == 1:
-                        print("Equation: %d * %d = " % (int(a),int(b)) + str(a*b))  
-
-                    if n == labelnum-1 and ifd == 1 and b != 0:
-                        print("Equation: %d / %d = " % (int(a),int(b)) + str(a/b))  
                 ################################## Real Image Test ################################
         print("Prediction: " + numbers )
         print()
