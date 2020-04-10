@@ -1,1 +1,1 @@
-# GraduationProject_
+# MNISTNET
