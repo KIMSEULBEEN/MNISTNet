@@ -1,21 +1,17 @@
 import cv2
 import numpy as np
 
-num_train, num_test = 84000, 14000
+num_train, num_test = 5, 14000
+
+def npy_gen(rdir, num_images):
+    data_array = []
+    for n in range(1, num_images + 1):
+        print(n)
+        img = cv2.imread("{}/{}.png".format(rdir, n), 0)
+        img = np.ravel(img)
+        data_array.append(img)
+    np.save("{}.npy".format(rdir), data_array)
 
 
-train_array = []
-for n in range(1,num_train+1):
-    print(n)
-    img = cv2.imread("train/{}.png".format(n), 0)
-    img = np.ravel(img)
-    train_array.append(img)
-np.save("train.npy", train_array)
-
-test_array = []
-for n in range(1,num_test+1):
-    print(n)
-    img = cv2.imread("test/{}.png".format(n), 0)
-    img = np.ravel(img)
-    test_array.append(img)
-np.save("test.npy", test_array)
+npy_gen("train", num_train)
+npy_gen("test", num_test)
