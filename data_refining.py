@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-num_train, num_test = 5, 14000
+num_train, num_test = 84000, 14000
 
 def npy_gen(rdir, num_images):
     data_array = []
@@ -15,3 +15,4 @@ def npy_gen(rdir, num_images):
 
 npy_gen("train", num_train)
 npy_gen("test", num_test)
+
