@@ -30,7 +30,6 @@ dropout_rate = tf.placeholder(tf.float32)
 
 ################################### Number Identifier(1st) ##########################################
 
-
 # 2 x_data,y_data,W,b
 
 X = tf.placeholder(tf.float32, [None, 784])
