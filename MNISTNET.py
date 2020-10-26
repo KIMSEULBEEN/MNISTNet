@@ -12,6 +12,7 @@ pipeline, config = rs.pipeline(), rs.config()
 config.enable_stream(rs.stream.color,  640, 360, rs.format.bgr8, 30)
 
 pipeline.start(config)
+print('good')
 
 
 def get_color_depth_image(pipeline):
