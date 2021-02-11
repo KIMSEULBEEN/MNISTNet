@@ -24,6 +24,13 @@ print(aspect_ratio)
 image_num = image_bin[y_max:y_max + h_max, x_max:x_max + w_max]
 image_num = cv2.copyMakeBorder(image_num, int(width * aspect_ratio / 5), int(width * aspect_ratio / 5)
                                , int(height * aspect_ratio / 5), int(height * aspect_ratio / 5), cv2.BORDER_CONSTANT)
+height, width = image_num.shape
+
+aspect_num = width - height
+if (aspect_num > 0):
+    image_num = cv2.copyMakeBorder(image_num, aspect_num // 2, aspect_num // 2, 0, 0, cv2.BORDER_CONSTANT)
+else:
+    image_num = cv2.copyMakeBorder(image_num, 0, 0, abs(aspect_num // 2), abs(aspect_num // 2), cv2.BORDER_CONSTANT)
 
 
 cv2.imwrite("img/tmp.jpg", image_num)
