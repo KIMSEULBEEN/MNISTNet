@@ -31,9 +31,8 @@ if (aspect_num > 0):
     image_num = cv2.copyMakeBorder(image_num, aspect_num // 2, aspect_num // 2, 0, 0, cv2.BORDER_CONSTANT)
 else:
     image_num = cv2.copyMakeBorder(image_num, 0, 0, abs(aspect_num // 2), abs(aspect_num // 2), cv2.BORDER_CONSTANT)
-
+image_num = cv2.resize(image_num, dsize=(28, 28), interpolation=cv2.INTER_AREA)
 
 cv2.imwrite("img/tmp.jpg", image_num)
-
 cv2.imshow("img", image_num)
 cv2.waitKey()
