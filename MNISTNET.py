@@ -37,7 +37,7 @@ class Net(nn.Module):
         self.load_state_dict(torch.load("mnist_cnn.pt"))
         self.eval()
 
-    def test_image(self):
+    def test_image(self, image):
         def preprocess_image(image):
             height, width = image.shape
             block_size = width // 5 if (width // 5) % 2 == 1 else width // 5 + 1
@@ -70,9 +70,9 @@ class Net(nn.Module):
                 image_num = cv2.copyMakeBorder(image_num, 0, 0, abs(aspect_num // 2), abs(aspect_num // 2), cv2.BORDER_CONSTANT)
             image_num = cv2.resize(image_num, dsize=(28, 28), interpolation=cv2.INTER_AREA)
             return image_num
-        img_tensor = np.zeros([1, 1, 28, 28], dtype=np.double)
-        image = cv2.imread('img/sample4.jpg', 0)
         image = preprocess_image(image)
+
+        img_tensor = np.zeros([1, 1, 28, 28], dtype=np.double)
         img_tensor[0, 0, :, :] = image
         t = torch.from_numpy(img_tensor).float()
         pred = (int)(self(t).argmax(dim=1, keepdim=True)[0][0])
@@ -92,7 +92,8 @@ def main():
         return device
 
     model = Net().to(set_args())
-    model.test_image()
+    image = cv2.imread('img/sample4.jpg', 0)
+    model.test_image(image)
 
 
 if __name__ == '__main__':
