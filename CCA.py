@@ -1,6 +1,6 @@
 import cv2
 
-image = cv2.imread('img/image3.jpg', 0)
+image = cv2.imread('img/sample4.jpg', 0)
 height, width = image.shape
 block_size = width // 5 if (width // 5) % 2 == 1 else width // 5 + 1
 print("block size: ", block_size)
