@@ -58,7 +58,9 @@ class Net(nn.Module):
             aspect_ratio = width / height  # 가로/세로 비율, 클 수록 가로가 길다
 
             # print(aspect_ratio)
+
             image_num = image_bin[y_max:y_max + h_max, x_max:x_max + w_max]
+            cv2.imwrite("img/preprocess1.jpg", image_num)
             image_num = cv2.copyMakeBorder(image_num, int(width * aspect_ratio / 5), int(width * aspect_ratio / 5)
                                            , int(height * aspect_ratio / 5), int(height * aspect_ratio / 5), cv2.BORDER_CONSTANT)
             height, width = image_num.shape
@@ -70,8 +72,9 @@ class Net(nn.Module):
                 image_num = cv2.copyMakeBorder(image_num, 0, 0, abs(aspect_num // 2), abs(aspect_num // 2), cv2.BORDER_CONSTANT)
             image_num = cv2.resize(image_num, dsize=(28, 28), interpolation=cv2.INTER_AREA)
             return image_num
+        cv2.imwrite("img/preprocess0.jpg", image)
         image = preprocess_image(image)
-
+        cv2.imwrite("img/preprocess2.jpg", image)
         img_tensor = np.zeros([1, 1, 28, 28], dtype=np.double)
         img_tensor[0, 0, :, :] = image
         t = torch.from_numpy(img_tensor).float()
