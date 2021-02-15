@@ -41,7 +41,7 @@ class Net(nn.Module):
         def preprocess_image(image):
             height, width = image.shape
             block_size = width // 5 if (width // 5) % 2 == 1 else width // 5 + 1
-            print("block size: ", block_size)
+            # print("block size: ", block_size)
 
             image_bin = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 151, 30)
             image_bin = cv2.bitwise_not(image_bin)
@@ -57,7 +57,7 @@ class Net(nn.Module):
 
             aspect_ratio = width / height  # 가로/세로 비율, 클 수록 가로가 길다
 
-            print(aspect_ratio)
+            # print(aspect_ratio)
             image_num = image_bin[y_max:y_max + h_max, x_max:x_max + w_max]
             image_num = cv2.copyMakeBorder(image_num, int(width * aspect_ratio / 5), int(width * aspect_ratio / 5)
                                            , int(height * aspect_ratio / 5), int(height * aspect_ratio / 5), cv2.BORDER_CONSTANT)
@@ -92,8 +92,22 @@ def main():
         return device
 
     model = Net().to(set_args())
-    image = cv2.imread('img/sample4.jpg', 0)
-    model.test_image(image)
+
+    capture = cv2.VideoCapture(2)
+    capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    while True:
+        _, image = capture.read()
+        cv2.imshow("image", image)
+        key = cv2.waitKey(1)
+
+        if key == ord('s') or key == ord('S'):
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            model.test_image(image)
+
+    capture.release()
+    cv2.destroyAllWindows()
+
 
 
 if __name__ == '__main__':
