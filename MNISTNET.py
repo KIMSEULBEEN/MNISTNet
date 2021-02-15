@@ -61,8 +61,8 @@ class Net(nn.Module):
 
             image_num = image_bin[y_max:y_max + h_max, x_max:x_max + w_max]
             cv2.imwrite("img/preprocess1.jpg", image_num)
-            image_num = cv2.copyMakeBorder(image_num, int(width * aspect_ratio / 5), int(width * aspect_ratio / 5)
-                                           , int(height * aspect_ratio / 5), int(height * aspect_ratio / 5), cv2.BORDER_CONSTANT)
+            image_num = cv2.copyMakeBorder(image_num, int(width * aspect_ratio / 15), int(width * aspect_ratio / 15)
+                                           , int(height * aspect_ratio / 15), int(height * aspect_ratio / 15), cv2.BORDER_CONSTANT)
             height, width = image_num.shape
 
             aspect_num = width - height
