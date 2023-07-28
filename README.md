@@ -2,4 +2,4 @@
 
 ---
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/587107ff-b0eb-432a-add2-cfb360cfcef5/Untitled.png)
+![그림1](https://github.com/KIMSEULBEEN/opencv-mnist-network/assets/26593337/81629330-dcd4-47b6-8ee0-ea6987d33350)
