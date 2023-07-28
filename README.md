@@ -1,6 +1,4 @@
 # opencv-mnist-network
-
----
  AlexNet 기반 숫자 인식 프로그램
 
  ## 😀 프로젝트 소개
