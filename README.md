@@ -1,5 +1,5 @@
 # opencv-mnist-network
-AlexNet-based number recognition program
+Deep Learning based number recognition program
 
 ## Development Period
 2017.03 ~ 2017.07 (4 months)
